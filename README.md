@@ -1,7 +1,7 @@
 # Code - Challenge 
 
 ## By Isaac Mogaka
-- It basically illustrates how Javascript can be used to come up with some solutions to the problems we experience in the real world.
+- It basically illustrates how Javascript can be used to come up with some solutions to the problems we experience in the real world and also offer paltforms in which one can be able enter his/her data upon clicking he can also be able to see more of the contents.
 ## Table of content
 - Description
 - Technologies used 
@@ -9,10 +9,12 @@
 - Licence
 - Authors Info
 ## DescriptionAuthors Info
-- <p>In the scenarios here we have two problems and they need to be solved, so i have come up with the solutions for the same problems using the Javascript code to write code that can solve that. The first problem being write a code that will be giving out the students grades based on there marks, then also write a code that will regulate the speed limits of drivers on the roads.</p>
+- <p>Basically what we are trying to do here is comming up with some kind of information concerning animals, upon clicking on a single name of the animals will be able to see the votes the picture and more other details about the animals that are written in a list oreder.</p>
 ## Technologies used 
 - This webpage was developed using:
    - Javascript - which has been used to come up with the fucntion to generate returns and solve the problems.
+   - HTML - Has been used to add the IDs which hav been used to call the data to javascript to be manipulated
+   - CSS - Used to style the HTML pages
 ## Contacts and support
 - For more information or clarification, kindly reach out to isaacmogaka2016@gmail.com
 ## Authors Info
