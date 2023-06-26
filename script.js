@@ -1,93 +1,90 @@
-// let animaldiv = document.getElementById('animaldiv')
-// //Getting my data
-// fetch('http://localhost:3000/characters').then((response)=>{
-//     return response.json()
-// }).then((jsData)=>{
-//     console.log(jsData) //array
+let animalDetail = document.querySelector('#animalDetail');
+//Getting the Data
+fetch("http://localhost:3000/characters").then(response => response.json()).then(jsData => {
+    for (charactersObj of jsData) {
+      console.log(charactersObj.name);
+      
+   //creating a reset button and styling of the reset button 
+       let button = document.createElement('button');
+         button.textContent="Reset";
+         button.style.fontSize=100;
+         button.style.display = 'none';
+         button.style.backgroundColor="black";
+         button.style.color="white";
+         button.style.width= "60px";
+         button.style.height= "30px";
+         button.style.radius = "1rem"
 
-//     for (animalObj of jsData){
-//         console.log(animalObj.name)
-//     //create li tag
-//     let liTag = document.createElement('li')
-
-//     //create li data
-//     let liData = document.createTextNode(animalObj.name)
-
-//     //append li data to li tag
-//     liTag.append(liData)
-
-//     //append li tag to ul div
-//     animaldiv.append(liTag)
-//     }
-    
-// }).catch((error)=>{
-//     console.error(error)
-// })
-
-// //Animal informtion
-// let moreAnimalInfo = document.createElement('div');
-// moreAnimalInfo.className = ('moreAnimalInfo')
-// list.appendChild(moreAnimalInfo)
-// moreAnimalInfo.innerHTML = `
-// <img src ='${item .image}'/>
-// `
-// moreAnimalInfo.style.display = 'none'
-// list.addEventListener('click',()=>{
-//     moreAnimalInfo.style.display = "block"
-// })
+      // adding event listener to the reset button to return votes to zero 
+      function reset(){
+        voteCount= 0;
+        votesParagraph.textContent = 'Votes: ' + voteCount;
+         }
+         button.addEventListener('click',reset)
 
 
+     //DOM manipulation
+     // Creating a list tag
+      let liTag = document.createElement('li');
+      liTag.style.cursor="pointer";
+  
+    //adding  event listener to the liTag
+
+      liTag.addEventListener('click',hiddenContent)
+         function hiddenContent(){
+          imgTag.style.display='block';
+          votesParagraph.style.display='block';
+          button.style.display = 'inline-block';
+        }
 
 
-// more information
-// function information(){
-//     let moreInfo = document.createElement('div')
-//     moreInfo.className = 'moreinfo'
-//     moreInfo.innerHTML = `Votes: ${event.votes}`
-//     container.appendChild('moreInfo')
-// }
-// liTag.addEventListener('click', () => {
-//     information
-// })
+      // Creating  lidata
+           let liData = document.createTextNode(charactersObj.name);
 
-//Getting my Data
-// fetch('http://localhost:3000/characters').then((response)=>{
-//     // console.log (response.json())
-//     return response.json()
-// }).then((jsData)=>{
-//     console.log(jsData)
-// })
+      // Creating an image element
+          let imgTag = document.createElement('img');
+      //styling the images 
+          imgTag.src = charactersObj.image;
+          imgTag.width = 350;
+          imgTag.height = 300;
+          imgTag.style.display="none";
 
-// //Dom manipulation
-// function domData(par){
-//     for (let item of par){
-//      let container = document.getElementById('container')
-//      let list =document.createElement('li')
-//      list.innerText = item.name
-//      container.appendChild(list)
-//     }
 
-let animalList = document.getElementById('animallist');
-let animalDetails = document.getElementById('animaldetails');
-
-fetch('http://localhost:3000/characters')
-  .then(response => response.json())
-  .then(characters => {
-    for (const character of characters) {
-      let animalName = document.createElement('p');
-      animalName.textContent = character.name;
-      animalName.addEventListener('click', () => {
-        fetch(`http://localhost:3000/characters/${character.id}`)
-          .then(response => response.json())
-          .then(animal => {
-            animalDetails.innerHTML = `<h2>${animal.name}</h2>
-              <img src="${animal.image}" alt="${animal.name}">
-              <p>TOTAL VOTES: <span id="vote-count">${animal.votes}</span></p>`;
-            let voteButton = document.createElement('button');
-            voteButton.textContent = 'VOTE';
-            animalDetails.appendChild(voteButton);
-          });
+      const imgTags = document.querySelectorAll('img');
+      imgTags.forEach((imgTag) => {
+        const votesParagraph = imgTag.nextElementSibling; 
+        let voteCount = 0; 
+      //adding the eventListener to the image
+        imgTag.addEventListener('click', () => {
+          voteCount++; 
+          votesParagraph.textContent = `Votes: ${voteCount}`; // Update the displayed vote count
+        });
       });
-      animalList.appendChild(animalName);
+
+
+      // Creating a paragraph that will display the votes & DOM manipulation
+      let votesParagraph = document.createElement('p');
+      votesParagraph.textContent = `Votes: ${charactersObj.votes}`;
+      votesParagraph.style.display="none"
+
+
+      // Appending liData to liTag
+      liTag.append(liData);
+
+      // Appending imgTag to liTag
+      liTag.append(imgTag);
+
+      // Appending votesSpan to liTag
+      liTag.append(votesParagraph);
+
+      //append buttonto liTag
+      liTag.append(button)
+
+      // Appending the li element to the animalDetail div
+      animalDetail.append(liTag);
     }
+  }).catch(error => {
+    console.error(error);
   });
+  
+

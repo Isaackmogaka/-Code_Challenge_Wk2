@@ -1,0 +1,37 @@
+
+#animalDetail{
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: blue;
+    
+    }
+    /*adding color red to the heading and the single paragraph*/
+    h1,p{
+        text-align: center;
+        color: rgb(63, 15, 118);
+        font-size: xx-large;
+    }
+    /*padding to create space between the list*/
+    ul li{
+        align-content:center;
+        padding: 30px;
+    }
+    
+    /*allign the list at the center*/
+    ul {
+        text-align: center;
+      }
+      
+      li {
+        display:block;
+      }
+    /* display the images in block format*/ 
+       img {
+        display: block;
+        margin: 0 auto;
+      } 
+      body{
+        background-color: rgb(233, 238, 249);
+      }  
+     
